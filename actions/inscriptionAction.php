@@ -1,5 +1,6 @@
 <?php
 require('actions/database.php');
+require('includes/functions.php');
 
 if (isset($_POST["nom"]) && isset($_POST["prenom"])) {
     if (isset($_POST["email"]) && isset($_POST["pwd"])) {
@@ -8,6 +9,7 @@ if (isset($_POST["nom"]) && isset($_POST["prenom"])) {
         $prenom = htmlspecialchars($_POST['prenom']);
         $pwd = htmlspecialchars($_POST['pwd']);
         $email = htmlspecialchars($_POST['email']);
+
         //verif existance ->
         $verifExist = $bdd->prepare("SELECT name from users WHERE email = ? OR name = ?");
         $verifExist->execute(array($email, $prenom));
@@ -16,12 +18,15 @@ if (isset($_POST["nom"]) && isset($_POST["prenom"])) {
             $error_Msg = "user deja existant";
             $error_id = 1;
             header('location:signup.php?notif=' . $error_id);
-            // die();
+
         } else {
             //Insertion de user ->
             $insertUser = $bdd->prepare("INSERT INTO users (name, login, mdp, email) VALUES (?,?,?,?)");
             $insertUser->execute(array($nom, $prenom, $pwd, $email));
+            $infos = $insertUser->fetchAll();
+            include('actions/beConnect.php');
         }
+
     } else {
         $error_Msg = "champs email/pwd incomplet";
         $error_id = 1;

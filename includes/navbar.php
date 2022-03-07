@@ -15,7 +15,7 @@
       <a href='inscription.php'>
         <button class="btn btn-sm btn-outline-primary" type="button">Paramètres</button>
       </a>
-      <a href='inscription.php'>
+      <a href='disconnect.php'>
         <button class="btn btn-sm btn-outline-primary" type="button">Mon Compte</button>
       </a>
     <?php }

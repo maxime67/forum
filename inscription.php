@@ -27,4 +27,6 @@
   <button type="submit" class="btn btn-outline-primary">S'inscrire</button>
 </div>
 </form>
-<?php include('actions/inscriptionAction.php')?>
+<?php 
+include('actions/inscriptionAction.php');
+?>

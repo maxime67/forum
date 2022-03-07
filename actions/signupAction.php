@@ -13,10 +13,9 @@ if (isset($_POST['email']) && isset($_POST['pwd'])) {
 
     //si requête ramène 1 résultat
     if ($checkCombinaison->rowCount() > 0) {
-        session_destroy();
         //Connecté !
-        $_SESSION['connect'] = true;
-        // var_dump($_SESSION);
+        include('actions/beConnect.php');
+        // header("location:page1.php");
     } else {
         //Error
         $error_Msg = "combinaison incorrect";
