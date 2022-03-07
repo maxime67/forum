@@ -1,7 +1,7 @@
 <?php
 require('actions/database.php');
 
-if (isset($_POST["nom"]) && isset($_POST["nom"])) {
+if (isset($_POST["nom"]) && isset($_POST["prenom"])) {
     if (isset($_POST["email"]) && isset($_POST["pwd"])) {
         //formulaire complet ->
         $nom = htmlspecialchars($_POST['nom']);
@@ -19,7 +19,7 @@ if (isset($_POST["nom"]) && isset($_POST["nom"])) {
             // die();
         } else {
             //Insertion de user ->
-            $insertUser = $bdd->prepare("INSERT INTO users ('name', 'login', 'mdp', 'email') VALUES ('?','?', '?', '?')");
+            $insertUser = $bdd->prepare("INSERT INTO users (name, login, mdp, email) VALUES (?,?,?,?)");
             $insertUser->execute(array($nom, $prenom, $pwd, $email));
         }
     } else {
